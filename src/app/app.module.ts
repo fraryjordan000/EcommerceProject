@@ -14,6 +14,8 @@ import { AccountComponent } from './account/account.component';
 import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
