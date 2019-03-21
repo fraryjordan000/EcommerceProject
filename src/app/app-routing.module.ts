@@ -8,13 +8,15 @@ import { AccountComponent } from './account/account.component';
 import { SearchComponent } from './search/search.component';
 import { DetailsComponent } from './details/details.component';
 
+import { AuthGuard } from './auth.guard';
+
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'account', component: AccountComponent},
-  {path: 'search', component: SearchComponent},
-  {path: 'details', component: DetailsComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  {path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
+  {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
+  {path: 'details', component: DetailsComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'}, //TODO: Change redirect from 'home' to 'login'
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
