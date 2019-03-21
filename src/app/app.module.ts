@@ -13,6 +13,8 @@ import { SearchComponent } from './search/search.component';
 import { AccountComponent } from './account/account.component';
 import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticket.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticke
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
