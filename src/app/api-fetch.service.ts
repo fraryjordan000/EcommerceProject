@@ -8,10 +8,8 @@ export class ApiFetchService {
 
   private url: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
 
-  constructor(private http: HttpClient) { }
-
-  getItems(cb) {
-    this.get(this.url, res => cb(res));
+  constructor(private http: HttpClient) {
+    
   }
 
   private get(url: string, cb: Function) {
