@@ -12,6 +12,7 @@ import { DetailsComponent } from './details/details.component';
 import { SearchComponent } from './search/search.component';
 import { AccountComponent } from './account/account.component';
 import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticket.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticke
     DetailsComponent,
     SearchComponent,
     AccountComponent,
-    PurchaseTicketComponent
+    PurchaseTicketComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
