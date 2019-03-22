@@ -13,7 +13,9 @@ interface User {
   uid: string;
   email: string;
   displayName: string;
-  photoURL: string
+  photoURL: string;
+  cart: any;
+  tickets: any;
 }
 
 @Injectable({
@@ -65,7 +67,6 @@ export class AuthService {
         if (this.router.url == '/login') {
           goHome();
         }
-        console.log("At home");
       });
   }
 
@@ -79,7 +80,9 @@ export class AuthService {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
-          photoURL: user.photoURL
+          photoURL: user.photoURL,
+          cart: [],
+          tickets: []
         };
 
         hasRun = true;
