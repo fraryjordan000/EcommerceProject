@@ -24,17 +24,17 @@ export class AuthService {
   user: Observable<User>;
 
   constructor(public afAuth: AngularFireAuth,
-              private afs: AngularFirestore,
-              private router: Router,
-              private ngZone: NgZone) {
+    private afs: AngularFirestore,
+    private router: Router,
+    private ngZone: NgZone) {
 
-                this.user = this.afAuth.authState.pipe(switchMap(user => {
-                  if(user) {
-                    return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-                  } else {
-                    return of(null);
-                  }
-                }));
+    this.user = this.afAuth.authState.pipe(switchMap(user => {
+      if (user) {
+        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+      } else {
+        return of(null);
+      }
+    }));
   }
 
   googleLogin() {
@@ -52,9 +52,20 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user);
-        this.ngZone.run(()=>{
-          this.router.navigate(['/headlines']);
-        });
+        let parent = this;
+        function goHome() {
+          parent.ngZone.run(() => {
+            parent.router.navigate(['/home']).then(() => {
+              if (parent.router.url == '/login') {
+                goHome();
+              }
+            });
+          });
+        }
+        if (this.router.url == '/login') {
+          goHome();
+        }
+        console.log("At home");
       });
   }
 
@@ -62,8 +73,8 @@ export class AuthService {
     let hasRun: boolean = false;
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
-    userRef.get().subscribe(res=>{
-      if(res.data() == undefined && !hasRun) {
+    userRef.get().subscribe(res => {
+      if (res.data() == undefined && !hasRun) {
         const data: User = {
           uid: user.uid,
           email: user.email,
@@ -78,5 +89,5 @@ export class AuthService {
     });
   }
 
-  
+
 }

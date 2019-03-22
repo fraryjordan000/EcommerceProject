@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.redirect();
+  }
+
+  isLoggedIn() {
+    return this.auth.afAuth.authState.pipe(first()).toPromise();
+  }
+
+  async redirect() {
+    const user = await this.isLoggedIn();
+    if(user) {
+      this.router.navigate(['/home']);
+    }
   }
 
 }
