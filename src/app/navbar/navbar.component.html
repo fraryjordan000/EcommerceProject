@@ -1,14 +1,15 @@
 <div id="navbar">
   <div id="logo">Ecommerce Site</div>
   <div id="search-div" *ngIf="auth.user | async as user">
-    <input id="search-bar" placeholder="Search">
-    <button id="search-button">Go</button>
+    <input placeholder="Search">
+    <button>Go</button>
   </div>
   <div id="links" *ngIf="auth.user | async as user">
-    <a routerLink="/home"></a>
-    <a routerLink="/cart"></a>
+    <a routerLink="/home">home</a>
+    <a routerLink="/cart">cart</a>
     <a routerLink="/account">
       <img src="{{user.photoURL}}">
     </a>
+    <button (click)="logout()">Sign Out</button>
   </div>
 </div>
