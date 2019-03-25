@@ -14,6 +14,14 @@ import { AccountComponent } from './account/account.component';
 import { PurchaseTicketComponent } from './shared/purchase-ticket/purchase-ticket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ItemSmallComponent } from './shared/item-small/item-small.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +34,16 @@ import { NavbarComponent } from './navbar/navbar.component';
     SearchComponent,
     AccountComponent,
     PurchaseTicketComponent,
-    NavbarComponent
+    NavbarComponent,
+    ItemSmallComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
