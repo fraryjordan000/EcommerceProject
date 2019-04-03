@@ -10,9 +10,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private fetch: ApiFetchService) { }
 
+  products: any = [];
+
   ngOnInit() {
     this.fetch.getData(res => {
-      console.log(res);
+      this.products = res;
     });
   }
 
