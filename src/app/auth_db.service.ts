@@ -92,5 +92,41 @@ export class AuthService {
     });
   }
 
+  getCart(cb: Function) {
+    let hasRun: boolean = false;
+
+    this.afAuth.authState.subscribe(user => {
+      if(!hasRun) {
+        const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+        cartRef.get().subscribe(res => {
+          if(!hasRun) {
+            let cart = res.data().cart;
+            cb(cart != undefined ? cart : []);
+            hasRun = true;
+          }
+        });
+      }
+    });
+  }
+
+  getTickets(cb: Function) {
+    let hasRun: boolean = false;
+
+    this.afAuth.authState.subscribe(user => {
+      if(!hasRun) {
+        const ticketsRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+        ticketsRef.get().subscribe(res => {
+          if(!hasRun) {
+            let tickets = res.data().tickets;
+            cb(tickets != undefined ? tickets : []);
+            hasRun = true;
+          }
+        });
+      }
+    });
+  }
+
 
 }

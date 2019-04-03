@@ -1,147 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiFetchService {
 
-  private url: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
-  private MOCK: any = [
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    },
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    },
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    },
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    },
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    },
-    {
-      id: 7,
-      brand: 'lorem ipsum brand',
-      name: 'generic makeup',
-      price: '7.0',
-      price_sign: '$',
-      currency: 'CAD',
-      image_link: 'https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769',
-      product_link: 'https://colourpop.com/collections/lippie-pencil',
-      description: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum, Lorem ipsum.',
-      rating: null,
-      category: 'pencil',
-      product_type: 'lip_liner',
-      tag_list: ['Vegan','cruelty free'],
-      created_at: '2018-07-08T23:45:08.056Z',
-      updated_at: '2018-07-09T00:53:23.301Z'
-    }
-  ];
+  private tokenBlob: string = 'b590e45d218f282cb94bcc056d9fdd85bc983453e465a3d7f948ea195fc2f1f2985dca29c29fbe3fc53c92dfcb69b1c3';
+
+  private options: any;
+
+  private products: any;
 
   constructor(private http: HttpClient) {
+    this.options= {
+      headers: new HttpHeaders({
+          authorization: this.tokenBlob
+      })
+    };
     
   }
 
-  fetchAll() {
-    return this.MOCK;
+  getData(cb: Function) {
+    if(this.products != undefined) {
+      this.subscribeToData(cb);
+    } else {
+      this.get(res => cb(res));
+    }
   }
 
-  fetchBrand(str: string) {
-    return this.MOCK;
+  private subscribeToData(cb: Function) {
+    this.products.subscribe(res => cb(res));
   }
 
-  fetchCategory(str: string) {
-    return this.MOCK;
-  }
-
-  fetchBrandAndCategory(brand: string, category: string) {
-    return this.MOCK;
-  }
-
-  private get(url: string, cb: Function) {
-    let tmp: any;
-    this.http.get(url).subscribe(
-      function(res) {
-        tmp = res;
-        if(cb != undefined) {
-          cb(res);
-        }
-      }
-    );
-    return tmp;
+  private get(cb: Function) {
+    this.products = this.http.get('http://98.202.125.118:3000/data', this.options);
+    this.products.subscribe(res => cb(res));
   }
 }
