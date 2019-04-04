@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiFetchService } from '../api-fetch.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fetch: ApiFetchService) { }
 
   ngOnInit() {
+    this.fetch.getData(res => {
+      //TODO: from some kind of input, filter by product id to a single product
+    });
   }
 
 }
