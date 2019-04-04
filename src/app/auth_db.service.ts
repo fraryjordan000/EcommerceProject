@@ -24,6 +24,8 @@ interface User {
 export class AuthService {
 
   user: Observable<User>;
+  tickets: any = [];
+  cart: any = [];
 
   constructor(public afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -93,6 +95,10 @@ export class AuthService {
   }
 
   getCart(cb: Function) {
+    if(this.cart.length != undefined){
+      cb(this.cart);
+      return;
+    }
     let hasRun: boolean = false;
 
     this.afAuth.authState.subscribe(user => {
@@ -102,7 +108,9 @@ export class AuthService {
         cartRef.get().subscribe(res => {
           if(!hasRun) {
             let cart = res.data().cart;
-            cb(cart != undefined ? cart : []);
+            cart = cart != undefined ? cart : [];
+            this.cart = cart;
+            cb(cart);
             hasRun = true;
           }
         });
@@ -110,7 +118,62 @@ export class AuthService {
     });
   }
 
+  addToCart(item: any) {
+    let hasRun: boolean = false;
+
+    this.getCart(res => {
+      this.afAuth.authState.subscribe(user => {
+        if(!hasRun) {
+          const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+  
+          res.push(item);
+          this.cart = res;
+          const data: User = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            cart: res,
+            tickets: this.tickets
+          };
+  
+          cartRef.set(data);
+          hasRun = true;
+        }
+      });
+    });
+  }
+  
+  clearCart() {
+    let hasRun: boolean = false;
+
+    this.getCart(res => {
+      this.afAuth.authState.subscribe(user => {
+        if(!hasRun) {
+          const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+  
+          this.cart = [];
+          const data: User = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            cart: [],
+            tickets: this.tickets
+          };
+  
+          cartRef.set(data);
+          hasRun = true;
+        }
+      });
+    });
+  }
+
   getTickets(cb: Function) {
+    if(this.tickets.length != undefined){
+      cb(this.tickets);
+      return;
+    }
     let hasRun: boolean = false;
 
     this.afAuth.authState.subscribe(user => {
@@ -120,7 +183,9 @@ export class AuthService {
         ticketsRef.get().subscribe(res => {
           if(!hasRun) {
             let tickets = res.data().tickets;
-            cb(tickets != undefined ? tickets : []);
+            tickets = tickets != undefined ? tickets : [];
+            this.tickets = tickets;
+            cb(tickets);
             hasRun = true;
           }
         });
@@ -128,5 +193,30 @@ export class AuthService {
     });
   }
 
+  addTicket(ticket: any) {
+    let hasRun: boolean = false;
+
+    this.getTickets(res => {
+      this.afAuth.authState.subscribe(user => {
+        if(!hasRun) {
+          const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+  
+          res.push(ticket);
+          this.tickets = res;
+          const data: User = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            cart: this.cart,
+            tickets: res
+          };
+  
+          cartRef.set(data);
+          hasRun = true;
+        }
+      });
+    });
+  }
 
 }

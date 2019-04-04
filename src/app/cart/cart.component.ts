@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth_db.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
+
+  cart_items: any = [];
 
   ngOnInit() {
+    this.auth.getCart(res => {
+      this.cart_items = res;
+      console.log(res);
+    });
   }
 
 }
