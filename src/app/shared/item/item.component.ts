@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-item',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+  @Input('product') product: any;
+
+  in_cart: boolean;
+
+  constructor() {}
 
   ngOnInit() {
+    this.in_cart = false;
+  }
+
+  toggle_in_cart() {
+    this.in_cart = !this.in_cart;
   }
 
 }
