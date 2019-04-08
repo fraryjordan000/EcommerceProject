@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   products_raw: any = []; // raw: Will not be changed when filtering/sorting
   products: any = []; // This is what is displayed on the page, based on products_raw but filtered
   
-  brands: any = []; //This array fills the 
-  categories: any = [];
+  brands: any = []; //This array fills the brands sort select in the HTML
+  categories: any = []; //This array fills the categories sort select in the HTML
   loaded: boolean = false;
 
   selected = {
