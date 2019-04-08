@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth_db.service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
+
+  tickets: any = [];
 
   ngOnInit() {
+    this.auth.getTickets(res => {
+      this.tickets = res;
+    });
   }
 
 }

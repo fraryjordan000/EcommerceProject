@@ -1,27 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiFetchService {
 
-  private url: string = 'http://makeup-api.herokuapp.com/api/v1/products.json';
+  private products: any;
+  private details: any;
 
-  constructor(private http: HttpClient) {
-    
+  constructor(private http: HttpClient) {}
+
+  getData(cb: Function) {
+    if(this.products != undefined) {
+      this.subscribeToData(cb);
+    } else {
+      this.get('http://98.202.125.118:3000/data.json', res => cb(res));
+    }
+  }
+
+  getDetails(cb: Function) {
+    if(this.details != undefined) {
+      this.subscribeToDetails(cb);
+    } else {
+      this.get('http://98.202.125.118:3000/data_details.json', res => cb(res));
+    }
+  }
+
+  private subscribeToData(cb: Function) {
+    this.products.subscribe(res => cb(res));
+  }
+
+  private subscribeToDetails(cb: Function) {
+    this.details.subscribe(res => cb(res));
   }
 
   private get(url: string, cb: Function) {
-    let tmp: any;
-    this.http.get(url).subscribe(
-      function(res) {
-        tmp = res;
-        if(cb != undefined) {
-          cb(res);
-        }
-      }
-    );
-    return tmp;
+    this.products = this.http.get(url);
+    this.products.subscribe(res => cb(res));
   }
 }

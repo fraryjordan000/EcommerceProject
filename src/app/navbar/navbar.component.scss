@@ -12,7 +12,7 @@
         color: #F2F5EA;
         cursor: default;
 
-        width: 10%;
+        min-width: 20%;
     }
 
     #search-div {
@@ -21,7 +21,7 @@
         width: 100%;
         height: 100%;
         input {
-            width: 50%;
+            width: 75%;
             height: 20px;
             font-size: 14px;
             border-radius: 5px;
