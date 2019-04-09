@@ -13,30 +13,27 @@ export class ApiFetchService {
 
   getData(cb: Function) {
     if(this.products != undefined) {
-      this.subscribeToData(cb);
-    } else {
-      this.get('http://98.202.125.118:3000/data.json', res => cb(res));
+      cb(this.products);
+      return;
     }
+    this.get('http://98.202.125.118:3000/data.json', res => {
+      this.products = res;
+      cb(res);
+    });
   }
 
   getDetails(cb: Function) {
     if(this.details != undefined) {
-      this.subscribeToDetails(cb);
-    } else {
-      this.get('http://98.202.125.118:3000/data_details.json', res => cb(res));
+      cb(this.details);
+      return;
     }
-  }
-
-  private subscribeToData(cb: Function) {
-    this.products.subscribe(res => cb(res));
-  }
-
-  private subscribeToDetails(cb: Function) {
-    this.details.subscribe(res => cb(res));
+    this.get('http://98.202.125.118:3000/data_details.json', res => {
+      this.details = res;
+      cb(res);
+    });
   }
 
   private get(url: string, cb: Function) {
-    this.products = this.http.get(url);
-    this.products.subscribe(res => cb(res));
+    this.http.get(url).subscribe(res => cb(res));
   }
 }

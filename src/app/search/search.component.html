@@ -1,4 +1,20 @@
 <app-navbar></app-navbar>
-<p>
-  search works!
-</p>
+<div class="container">
+  <p>Results For "{{search_item}}"</p>
+  <div class="selection-boxes">
+    <h3>Sort By: </h3>
+    <form *ngIf="loaded">
+      <select (change)="onBrandChange($event)">
+        <option value=""></option>
+        <option *ngFor="let item of brands" value="{{item}}">{{item}}</option>
+      </select>
+      <select (change)="onCategoryChange($event)">
+          <option value=""></option>
+          <option *ngFor="let item of categories" value="{{item}}">{{item}}</option>
+      </select>
+    </form>
+  </div>
+  <div class="products">
+    <app-item *ngFor="let prod of products" [product]="prod"></app-item>
+  </div>
+</div>
