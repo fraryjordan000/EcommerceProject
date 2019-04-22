@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    padding: 3em;
+}
+
+.selection-boxes {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3em;
+    border: 1px solid #565656;
+    color: #565656;
+    padding: 1em;
+    height: 7em;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    // background-color: white;
+}
