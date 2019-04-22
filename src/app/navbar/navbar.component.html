@@ -1,8 +1,8 @@
 <div id="navbar">
   <div id="logo">Ecommerce Site</div>
-  <div id="search-div" *ngIf="auth.user | async as user">
-    <input placeholder="Search">
-    <button>Go</button>
+  <div id="search-div" *ngIf="auth.user | async as user" (keydown)="searchKeyPress($event)">
+    <input placeholder="Search" (keydown)="searchChanged($event)">
+    <button (click)="toSearch()">Go</button>
   </div>
   <div id="links" *ngIf="auth.user | async as user">
     <a routerLink="/home">home</a>
