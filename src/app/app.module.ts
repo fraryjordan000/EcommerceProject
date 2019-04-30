@@ -22,6 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ItemSmallComponent } from './shared/item-small/item-small.component';
 import { ReRouterComponent } from './re-router/re-router.component';
+import { CostPipe } from './cost.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ReRouterComponent } from './re-router/re-router.component';
     PurchaseTicketComponent,
     NavbarComponent,
     ItemSmallComponent,
-    ReRouterComponent
+    ReRouterComponent,
+    CostPipe
   ],
   imports: [
     BrowserModule,

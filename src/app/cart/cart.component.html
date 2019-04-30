@@ -1,4 +1,15 @@
 <app-navbar></app-navbar>
-<p>
-  cart works!
-</p>
+<div id="cart-container">
+  <div id="items-container">
+    <app-item-in-cart *ngFor="let prod of cart_items" [product]="prod"></app-item-in-cart>
+  </div>
+  <div id="actions-container">
+    <div class="action-box">
+      <p>Total Cost: ${{ cart_items | cost }}</p>
+      <button>Purchase</button>
+    </div>
+    <div class="action-box">
+      <button>Empty Cart</button>
+    </div>
+  </div>
+</div>

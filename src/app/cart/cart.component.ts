@@ -15,7 +15,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.auth.getCart(res => {
       this.cart_items = res;
-      console.log(res);
     });
   }
 
