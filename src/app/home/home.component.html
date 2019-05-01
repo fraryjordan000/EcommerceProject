@@ -4,11 +4,11 @@
     <h3>Sort By: </h3>
     <form *ngIf="loaded">
       <select (change)="onBrandChange($event)">
-        <option value="">(Brand)</option>
+        <option value=""></option>
         <option *ngFor="let item of brands" value="{{item}}">{{item}}</option>
       </select>
       <select (change)="onCategoryChange($event)">
-          <option value="">(Category)</option>
+          <option value=""></option>
           <option *ngFor="let item of categories" value="{{item}}">{{item}}</option>
       </select>
     </form>
