@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
-<p>
-  account works!
-</p>
+
+<div id="purchase-container">
+  <app-purchase-ticket *ngFor="let ticket of tickets" [ticket]="ticket"></app-purchase-ticket>
+</div>

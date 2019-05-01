@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiFetchService } from '../api-fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilterProductsService } from '../filter-products.service';
+import { AuthService } from '../auth_db.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { FilterProductsService } from '../filter-products.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private fetch: ApiFetchService, private route: ActivatedRoute, private filter: FilterProductsService) { }
+  constructor(private fetch: ApiFetchService, private route: ActivatedRoute, private filter: FilterProductsService, private auth: AuthService, private spinner: NgxSpinnerService) { }
 
   products: any = [];
   products_raw: any = [];
@@ -28,6 +30,7 @@ export class SearchComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.spinner.show();
     this.fetch.getData(res => {
       this.search_item = this.route.snapshot.paramMap.get('item');
       let search_regex: RegExp = new RegExp(this.search_item, 'i');
@@ -37,8 +40,11 @@ export class SearchComponent implements OnInit {
           rtn.push(res[i]);
         }
       }
-      this.products_raw = rtn;
-      this.products = rtn;
+      this.auth.itemsInCart(rtn, res => {
+        this.products_raw = res;
+        this.products = res;
+        this.spinner.hide();
+      });
     });
     this.fetch.getDetails(res => {
       this.brands = res.brands;

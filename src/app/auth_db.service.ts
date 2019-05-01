@@ -95,10 +95,6 @@ export class AuthService {
   }
 
   getCart(cb: Function) {
-    if(this.cart.length != undefined){
-      cb(this.cart);
-      return;
-    }
     let hasRun: boolean = false;
 
     this.afAuth.authState.subscribe(user => {
@@ -118,7 +114,7 @@ export class AuthService {
     });
   }
 
-  addToCart(item: any) {
+  addToCart(item: any, cb: Function) {
     let hasRun: boolean = false;
 
     this.getCart(res => {
@@ -139,12 +135,13 @@ export class AuthService {
   
           cartRef.set(data);
           hasRun = true;
+          cb();
         }
       });
     });
   }
-  
-  clearCart() {
+
+  removeFromCart(itemID: number, cb: Function) {
     let hasRun: boolean = false;
 
     this.getCart(res => {
@@ -152,28 +149,66 @@ export class AuthService {
         if(!hasRun) {
           const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
   
-          this.cart = [];
+          for(let i in res) {
+            if(res[i].id === itemID) {
+              res.splice(i,1);
+            }
+          }
+          this.cart = res;
           const data: User = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
             photoURL: user.photoURL,
-            cart: [],
+            cart: res,
             tickets: this.tickets
           };
   
           cartRef.set(data);
           hasRun = true;
+          cb();
         }
       });
     });
   }
 
+  itemsInCart(items: any, cb: Function) {
+    this.getCart(res => {
+      for(let i in res) {
+        for(let j in items) {
+          if(items[j].id === res[i].id) {
+            items[j].inCart = true;
+          }
+        }
+      }
+      cb(items);
+    });
+  }
+  
+  clearCart() {
+    let hasRun: boolean = false;
+
+    this.afAuth.authState.subscribe(user => {
+      if(!hasRun) {
+        const cartRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+        this.cart = [];
+        const data: User = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          cart: [],
+          tickets: this.tickets
+        };
+
+        cartRef.set(data);
+        hasRun = true;
+      }
+    });
+  }
+
   getTickets(cb: Function) {
-    if(this.tickets.length != undefined){
-      cb(this.tickets);
-      return;
-    }
     let hasRun: boolean = false;
 
     this.afAuth.authState.subscribe(user => {
