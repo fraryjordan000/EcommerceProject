@@ -6,10 +6,10 @@
   <div id="actions-container">
     <div class="action-box">
       <p>Total Cost: ${{ cart_items | cost }}</p>
-      <button>Purchase</button>
+      <button (click)="purchase()">Purchase</button>
     </div>
     <div class="action-box">
-      <button>Empty Cart</button>
+      <button (click)="empty()">Empty Cart</button>
     </div>
   </div>
 </div>

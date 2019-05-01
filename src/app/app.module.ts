@@ -24,6 +24,8 @@ import { ItemSmallComponent } from './shared/item-small/item-small.component';
 import { ReRouterComponent } from './re-router/re-router.component';
 import { CostPipe } from './cost.pipe';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { CostPipe } from './cost.pipe';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
