@@ -22,6 +22,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ItemSmallComponent } from './shared/item-small/item-small.component';
 import { ReRouterComponent } from './re-router/re-router.component';
+import { CostPipe } from './cost.pipe';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { ReRouterComponent } from './re-router/re-router.component';
     PurchaseTicketComponent,
     NavbarComponent,
     ItemSmallComponent,
-    ReRouterComponent
+    ReRouterComponent,
+    CostPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { ReRouterComponent } from './re-router/re-router.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

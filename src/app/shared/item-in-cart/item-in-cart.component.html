@@ -1,3 +1,8 @@
-<p>
-  item-in-cart works!
-</p>
+<p>Item:</p>
+<img src="{{product.api_featured_image}}">
+<p>{{product.name}}</p>
+<p>${{product.price}}</p>
+<p>{{product.brand}}</p>
+
+<button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+<button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>

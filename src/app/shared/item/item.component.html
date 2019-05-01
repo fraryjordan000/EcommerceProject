@@ -4,5 +4,5 @@
 <p>${{product.price}}</p>
 <p>{{product.brand}}</p>
 
-<button *ngIf="in_cart" (click)="toggle_in_cart()">Remove From Cart</button>
-<button *ngIf="!in_cart" (click)="toggle_in_cart()">Add To Cart</button>
+<button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+<button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
