@@ -30,12 +30,16 @@ export class CartComponent implements OnInit {
   }
 
   purchase() {
+    if(this.cart_items.length < 1) return;
+    let d = new Date();
+    let day = d.getDay();
     let ticket = {
       items: this.cart_items,
       total: this.calculatePrice(),
-      date: Date(),
+      date: `${d.getMonth()}/${day.toString().length < 2 ? '0'+day : day}/${d.getFullYear()}`,
       id: Math.round(Math.random()*100000)
     }
+    console.log(ticket.date);
     this.auth.addTicket(ticket);
     this.auth.clearCart();
     this.cart_items = [];
