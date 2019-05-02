@@ -1,5 +1,8 @@
 <app-navbar></app-navbar>
+<div class="wrapper">
+  <div class="title">Account Purchases</div>
 
-<div id="purchase-container">
-  <app-purchase-ticket *ngFor="let ticket of tickets" [ticket]="ticket"></app-purchase-ticket>
+  <div id="purchase-container">
+    <app-purchase-ticket *ngFor="let ticket of tickets" [ticket]="ticket"></app-purchase-ticket>
+  </div>
 </div>
