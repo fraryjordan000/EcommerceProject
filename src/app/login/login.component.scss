@@ -1,0 +1,22 @@
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+button {
+    background-color: #FCFFF4;
+    border: 1px solid #565656;
+    color: #565656;
+    padding: 1em;
+    border-radius: 5px;
+    font-size: 1.5em;
+    margin-top: 1em;
+    outline: none;
+}

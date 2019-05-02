@@ -1,8 +1,7 @@
 <div class="ticket">
   <div class="date_id">
-    <h4>{{ticket.date}}</h4>
-    <h5>Purchase ID: {{ticket.id}}</h5>
+    <span>{{ticket.date}}</span> <span>Purchase ID: {{ticket.id}}</span>
   </div>
   <h3>Total Price: ${{ticket.total}}</h3>
-  <span>{{ticket.items[0].name}}</span><span *ngFor="let item of ticket.items">{{item.name != ticket.items[0].name ? ', '+item.name : ''}}</span>
+  <div><span>{{ticket.items[0].name}}</span><span *ngFor="let item of ticket.items">{{item.name != ticket.items[0].name ? ', '+item.name : ''}}</span></div>
 </div>

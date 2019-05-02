@@ -1,8 +1,13 @@
-<p>Item:</p>
-<img src="{{product.api_featured_image}}">
-<p>{{product.name}}</p>
-<p>${{product.price}}</p>
-<p>{{product.brand}}</p>
+<div class="item-wrapper">
+    <div class="left">
+        <img src="{{product.api_featured_image}}">
+    </div>
+    <div class="right">
+        <p>{{product.brand}} {{product.name}}</p>
+        <p>${{product.price}}</p>
+        <p></p>
 
-<button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
-<button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
+        <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+        <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
+    </div>
+</div>

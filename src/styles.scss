@@ -1,7 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    margin: 0px;
-    padding: 0px;
 
-    font-family: 'Arial';
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.selection-boxes {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3em;
+    border: 1px solid #565656;
+    color: #565656;
+    padding: 1em;
+    height: 7em;
+}
+
+select {
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    // background-color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }

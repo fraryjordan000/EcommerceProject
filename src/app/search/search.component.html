@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <p>Results For "{{search_item}}"</p>
+  
   <div class="selection-boxes">
     <h3>Sort By: </h3>
     <form *ngIf="loaded">
@@ -15,6 +15,7 @@
     </form>
   </div>
   <div class="products">
+    <p class="result">Results For "{{search_item}}"</p>
     <app-item *ngFor="let prod of products" [product]="prod"></app-item>
   </div>
 </div>
