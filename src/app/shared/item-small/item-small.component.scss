@@ -1,0 +1,18 @@
+img {
+    width: 5.5em;
+    height: 5.5em;
+    overflow: hidden;
+    margin: .5em;
+    border: 1.2px solid #a1a1a1;
+    border-radius: 3px;
+
+    cursor: pointer;
+}
+
+.item-wrapper {
+    display: flex;
+    background-color: #FCFFF4;
+    border: 1.2px solid #a1a1a1;
+    margin: .6em;
+    border-radius: 3px;
+}

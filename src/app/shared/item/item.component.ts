@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/auth_db.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,7 @@ export class ItemComponent implements OnInit {
 
   private toggling = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     if(this.product.inCart) this.inCart = true;
@@ -32,6 +33,10 @@ export class ItemComponent implements OnInit {
         this.toggling = false;
       });
     }
+  }
+
+  toDetails(id: number) {
+    this.router.navigate(['/reroute', 'details/'+id]);
   }
 
 }

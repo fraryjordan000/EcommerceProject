@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
   {path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'search/:item', component: SearchComponent, canActivate: [AuthGuard]},
-  {path: 'details', component: DetailsComponent, canActivate: [AuthGuard]},
+  {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard]},
   {path: 'reroute/:url', component: ReRouterComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
