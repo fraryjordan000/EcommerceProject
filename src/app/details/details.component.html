@@ -1,4 +1,24 @@
 <app-navbar></app-navbar>
-<p>
-  details works!
-</p>
+<div id="details-container">
+  <div id="details">
+    <img src="{{product.api_featured_image}}">
+    <p>{{product.brand}} {{product.name}}</p>
+    <p>${{product.price}}</p>
+    
+    <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+    <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
+    
+    <p>Description: {{product.description}}</p>
+    <a href="{{product.product_link}}">Manufacturer's Webpage</a>
+    <p>Category: {{product.category}}</p>
+
+    <div id="tag-container">
+      <div class="tag" *ngFor="let tag of product.tag_list">
+        <p>{{tag}}</p>
+      </div>
+    </div>
+  </div>
+  <div id="recommended">
+    <app-item-small *ngFor="let product of recommended" [product]="product"></app-item-small>
+  </div>
+</div>

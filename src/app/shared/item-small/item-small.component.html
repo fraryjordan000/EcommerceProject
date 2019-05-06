@@ -1,3 +1,12 @@
-<p>
-  item-small works!
-</p>
+<div class="item-wrapper">
+  <div class="left">
+    <img src="{{product.api_featured_image}}" (click)="toDetails(product.id)">
+  </div>
+  <div class="right">
+      <p>{{product.brand}} {{product.name}}</p>
+      <p>Price: ${{product.price}}</p>
+      
+      <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+      <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
+  </div>
+</div>
