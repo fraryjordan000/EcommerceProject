@@ -18,13 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ItemSmallComponent } from './shared/item-small/item-small.component';
 import { ReRouterComponent } from './re-router/re-router.component';
 import { CostPipe } from './cost.pipe';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AngularFireAuthModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{ provide: FirestoreSettingsToken, useValue: {} }, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
