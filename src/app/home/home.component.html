@@ -3,10 +3,13 @@
   <div class="selection-boxes">
     <h3>Sort By: </h3>
     <form *ngIf="loaded">
-      <div><select (change)="onBrandChange($event)">
+      Brand:
+      <div>
+        <select (change)="onBrandChange($event)">
         <option value=""></option>
         <option *ngFor="let item of brands" value="{{item}}">{{item}}</option>
       </select></div>
+      Category:
       <div><select (change)="onCategoryChange($event)">
           <option value=""></option>
           <option *ngFor="let item of categories" value="{{item}}">{{item}}</option>
