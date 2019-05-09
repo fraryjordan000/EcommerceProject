@@ -13,6 +13,7 @@ body {
     border: 1px solid #565656;
     color: #565656;
     padding: 1em;
+    padding-bottom: 2em;
     height: 7em;
     border-radius: 3px;
 }
@@ -28,6 +29,7 @@ select {
 form {
     display: flex;
     flex-direction: column;
+    // padding-bottom: 4em;
 }
 
 button {
