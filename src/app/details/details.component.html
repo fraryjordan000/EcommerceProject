@@ -1,17 +1,23 @@
 <app-navbar></app-navbar>
 <div id="details-container">
   <div id="details">
-    <img src="{{product.api_featured_image}}">
-    <p>{{product.brand}} {{product.name}}</p>
-    <p>${{product.price}}</p>
-    
-    <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
-    <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
-    
-    <p>Description: {{product.description}}</p>
-    <a href="{{product.product_link}}">Manufacturer's Webpage</a>
-    <p>Category: {{product.category}}</p>
-
+    <div class="title">
+      <img src="{{product.api_featured_image}}">
+      <div class="title-details">
+        <div class="button-wrapper">
+          <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
+          <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>
+        </div>
+        <p class="title-name">{{product.brand}} {{product.name}}</p>
+        <p>${{product.price}}</p>
+      </div>
+    </div>
+    <div class="product-text">
+      <p>Description: {{product.description}}</p>
+      <a href="{{product.product_link}}">Manufacturer's Webpage</a>
+      <p>Category: {{product.category}}</p>
+    </div>
+    <div>Tags:</div>
     <div id="tag-container">
       <div class="tag" *ngFor="let tag of product.tag_list">
         <p>{{tag}}</p>
