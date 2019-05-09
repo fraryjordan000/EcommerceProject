@@ -1,5 +1,5 @@
 <div id="navbar">
-  <div id="logo">Ecommerce Site</div>
+  <div id="logo"><a routerLink="/home">Ecommerce Site</a></div>
   <div id="search-div" *ngIf="auth.user | async as user" (keydown)="searchKeyPress($event)">
     <input placeholder="Search" (keydown)="searchChanged($event)">
     <button (click)="toSearch()">Go</button>
