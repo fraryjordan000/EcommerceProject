@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ApiFetchService {
       cb(this.products);
       return;
     }
-    this.get('http://98.202.125.118:3000/data.json', res => {
+    this.get('https://jordan-api-server.herokuapp.com/data.json', res => {
       this.products = res;
       cb(res);
     });
@@ -27,7 +27,7 @@ export class ApiFetchService {
       cb(this.details);
       return;
     }
-    this.get('http://98.202.125.118:3000/data_details.json', res => {
+    this.get('https://jordan-api-server.herokuapp.com/data_details.json', res => {
       this.details = res;
       cb(res);
     });

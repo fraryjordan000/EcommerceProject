@@ -9,6 +9,19 @@ img {
     cursor: pointer;
 }
 
+button {
+    font-size: .8em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-radius: 10px;
+    
+    &:hover {
+        border: 1px solid #777;
+        border-bottom: 1px solid #aaa;
+    }
+}
+
 .item-wrapper {
     display: flex;
     background-color: #FCFFF4;

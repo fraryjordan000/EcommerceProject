@@ -4,7 +4,7 @@
     </div>
     <div class="right">
         <p>{{product.brand}} {{product.name}}</p>
-        <p>${{product.price}}</p>
+        <p>Price: ${{product.price}}</p>
 
         <button *ngIf="inCart" (click)="toggle_inCart()">Remove From Cart</button>
         <button *ngIf="!inCart" (click)="toggle_inCart()">Add To Cart</button>

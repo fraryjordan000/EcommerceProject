@@ -1,0 +1,3 @@
+ng build
+
+firebase deploy
